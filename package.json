@@ -1,0 +1,29 @@
+{
+  "name": "@slicr97/functional-conditions",
+  "version": "0",
+  "description": "Making conditional statements in JavaScript functional",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepublish": "rm -rf dist && npx tsc",
+    "test": "nyc mocha",
+    "lint": "eslint . --ext .ts",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "repository": "git@github.com:SlicR97/functional-conditions.git",
+  "author": "Nico Loos <nico.loos@slicr.de>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^17.0.35",
+    "@typescript-eslint/eslint-plugin": "^5.25.0",
+    "@typescript-eslint/parser": "^5.25.0",
+    "eslint": "^8.15.0",
+    "mocha": "^10.0.0",
+    "nyc": "^15.1.0",
+    "prettier": "^2.6.2",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  }
+}
