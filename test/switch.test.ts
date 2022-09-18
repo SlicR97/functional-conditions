@@ -1,5 +1,5 @@
 import { equal } from 'assert';
-import { $switch } from '../src/index';
+import { $switch } from '../src';
 
 describe('switch.ts', () => {
   describe('#$switch()', () => {

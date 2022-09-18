@@ -15,7 +15,7 @@ yarn add @slicr97/functional-conditions
 ## Usage
 Import the functions you want to use:
 ```typescript
-import { $if, $switch } from '@slicr97/functional-conditions';
+import { $if, $switch, $tryCatch } from '@slicr97/functional-conditions';
 ```
 
 Or, make them available globally by importing at the top of your entrypoint:
@@ -38,6 +38,11 @@ This function emulates a wrapper around JavaScript's `switch` statement. It take
   1. `c` can be a constant value that will be compared to `with` or a function that takes `with` and returns either `true` or `false`
   2. `then` can be a constant value that will be returned or a function that returns a value
 3. `default` is the default value that is returned if no cases match. This can be either a constant value or a function that returns a value.
+
+### The `$tryCatch` function
+
+This function wraps JavaScript's `tryCatch` statement. It takes an `fn` parameter which is a function that tries to execute.
+It also takes a second parameter, `err`, which can either be a constant value or a function that takes an error which can be used to format the error and return.
 
 ## Examples
 
@@ -76,6 +81,19 @@ const message = $switch ({
 });
 
 console.log(message); // Will log "You're not that old"
+```
+
+### $tryCatch
+
+```typescript
+import {$tryCatch} from '@slicr97/functional-conditions';
+
+const value = $tryCatch(
+  () => 3 / 0,
+  'Cannot divide by zero!'
+);
+
+console.log(value); // Will log "Cannot divide by zero!"
 ```
 
 ### Considerations

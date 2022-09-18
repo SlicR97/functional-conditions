@@ -1,11 +1,12 @@
 {
   "name": "@slicr97/functional-conditions",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Making conditional statements in JavaScript functional",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublish": "rm -rf dist && npx tsc",
+    "build": "npx tsc",
     "test": "nyc mocha",
     "lint": "eslint . --ext .ts",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"

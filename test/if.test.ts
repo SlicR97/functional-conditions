@@ -1,5 +1,5 @@
 import { equal } from 'assert';
-import { $if } from '../src/if';
+import { $if } from '../src';
 
 describe('if.ts', () => {
   describe('#$if()', () => {
