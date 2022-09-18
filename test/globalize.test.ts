@@ -23,4 +23,13 @@ describe('globalize.ts', () => {
 
     equal(actual, 1);
   });
+
+  it('should provide $tryCatch as a global function', () => {
+    const actual = $tryCatch(
+      () => 1,
+      () => 0
+    )
+
+    equal(actual, 1)
+  })
 });
