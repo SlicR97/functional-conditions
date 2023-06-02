@@ -5,7 +5,7 @@
  *
  * @param Type Return type
  */
-type IfFunction<Type> = () => Type;
+type IfFunction<Type> = () => Type
 
 /**
  * Function type provider for globalize.ts
@@ -15,7 +15,7 @@ export type IfFunctionType = <TThen, TElse>(
   condition: any,
   thenCase: IfFunction<TThen> | TThen,
   elseCase: IfFunction<TElse> | TElse,
-) => TThen | TElse;
+) => TThen | TElse
 
 /**
  * Functional @see if expression
@@ -31,11 +31,11 @@ export const $if = <TThen, TElse>(
   thenCase: IfFunction<TThen> | TThen,
   elseCase: IfFunction<TElse> | TElse,
 ): TThen | TElse => {
-  const $return = condition ? thenCase : elseCase;
+  const $return = condition ? thenCase : elseCase
 
   if (typeof $return === 'function') {
-    return ($return as IfFunction<TThen | TElse>)();
+    return ($return as IfFunction<TThen | TElse>)()
   } else {
-    return $return;
+    return $return
   }
-};
+}

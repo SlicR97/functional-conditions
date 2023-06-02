@@ -1,3 +1,3 @@
-export * from './if';
-export * from './switch';
-export * from './try-catch';
+export * from './if'
+export * from './switch'
+export * from './try-catch'

@@ -4,7 +4,7 @@
  * @param Type Type of the value of the $switch function to be checked
  * @param t Instance of the type for checking
  */
-type SwitchFunction<Type> = (t: Type) => boolean;
+type SwitchFunction<Type> = (t: Type) => boolean
 
 /**
  * Function type for the cases and default of $switch,
@@ -13,7 +13,7 @@ type SwitchFunction<Type> = (t: Type) => boolean;
  *
  * @param TReturn The return type
  */
-type ReturnFunction<TReturn> = () => TReturn;
+type ReturnFunction<TReturn> = () => TReturn
 
 /**
  * Option type for the $switch function
@@ -25,20 +25,20 @@ type ReturnFunction<TReturn> = () => TReturn;
  * @param default The default case. This case must be supplied at all times, as it will be returned if none of the cases match
  */
 type SwitchOptions<Type, TReturn> = {
-  with: Type;
+  with: Type
   cases: [
     c: Type | SwitchFunction<Type>,
     then: TReturn | ReturnFunction<TReturn>,
-  ][];
-  default: TReturn | ReturnFunction<TReturn>;
-};
+  ][]
+  default: TReturn | ReturnFunction<TReturn>
+}
 
 /**
  * Function type provider for globalize.ts
  */
 export type SwitchFunctionType = <Type, TReturn>(
   options: SwitchOptions<Type, TReturn>,
-) => TReturn;
+) => TReturn
 
 /**
  * Functional switch expression
@@ -51,22 +51,22 @@ export type SwitchFunctionType = <Type, TReturn>(
 export const $switch = <Type, TReturn>(
   options: SwitchOptions<Type, TReturn>,
 ): TReturn => {
-  let $return;
+  let $return
   for (const [c, then] of options.cases) {
     if (
       (typeof c === 'function' && (c as SwitchFunction<Type>)(options.with)) ||
       c === options.with
     ) {
-      $return = then;
-      break;
+      $return = then
+      break
     }
   }
 
-  $return = $return ?? options.default;
+  $return = $return ?? options.default
 
   if (typeof $return === 'function') {
-    return ($return as ReturnFunction<TReturn>)();
+    return ($return as ReturnFunction<TReturn>)()
   } else {
-    return $return;
+    return $return
   }
-};
+}
