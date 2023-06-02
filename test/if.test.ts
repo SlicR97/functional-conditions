@@ -1,76 +1,72 @@
-import { equal } from 'assert';
-import { $if } from '../src';
+import { $if } from '../src'
+import { expect } from 'chai'
 
 describe('if.ts', () => {
   describe('#$if()', () => {
-    it('should execute the first path if the condition is true', () => {
-      const actual = $if (
+    it('executes the first path if the condition is true', () => {
+      const actual = $if(
         true,
         () => 'x',
-        () => 'y'
-      );
+        () => 'y',
+      )
 
-      equal(actual, 'x');
-    });
+      expect(actual).to.equal('x')
+    })
 
-    it('should execute the second path if the condition is false', () => {
-      const actual = $if (
+    it('executes the second path if the condition is false', () => {
+      const actual = $if(
         false,
         () => 'x',
-        () => 'y'
-      );
+        () => 'y',
+      )
 
-      equal(actual, 'y');
-    });
+      expect(actual).to.equal('y')
+    })
 
-    it('should be able to return any data type', () => {
-      const actual = $if (
+    it('is able to return any data type', () => {
+      const actual = $if(
         true,
         () => 5,
-        () => 6
-      );
+        () => 6,
+      )
 
-      equal(actual, 5);
-    });
+      expect(actual).to.equal(5)
+    })
 
-    it('should return a strongly typed value', () => {
-      const actual = $if (
+    it('returns a strongly typed value', () => {
+      const actual = $if(
         false,
         () => 'x',
-        () => 6
-      );
+        () => 6,
+      )
 
-      equal(actual, 6);
-    });
+      expect(actual).to.equal(6)
+    })
 
-    it('should accept any value that can be truthy or falsy as its condition', () => {
-      const actual = $if (
+    it('accepts any value that can be truthy or falsy as its condition', () => {
+      const actual = $if(
         'a',
         () => 'x',
-        () => 'y'
-      );
+        () => 'y',
+      )
 
-      equal(actual, 'x');
-    });
+      expect(actual).to.equal('x')
+    })
 
-    it('should return false when given a falsy value', () => {
-      const actual = $if (
+    it('returns false when given a falsy value', () => {
+      const actual = $if(
         '',
         () => 'x',
-        () => 'y'
-      );
+        () => 'y',
+      )
 
-      equal(actual, 'y');
-    });
+      expect(actual).to.equal('y')
+    })
 
-    it('should accept constant values as its then and else cases', () => {
-      const actual = $if (
-        true,
-        1,
-        2
-      );
+    it('accepts constant values as its then and else cases', () => {
+      const actual = $if(true, 1, 2)
 
-      equal(actual, 1);
-    });
-  });
-});
+      expect(actual).to.equal(1)
+    })
+  })
+})

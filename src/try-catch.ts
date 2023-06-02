@@ -3,7 +3,7 @@
  *
  * @param TReturn The return type of the function
  */
-type FunctionType<TReturn> = () => TReturn;
+type FunctionType<TReturn> = () => TReturn
 
 /**
  * Function that formats an error
@@ -11,7 +11,7 @@ type FunctionType<TReturn> = () => TReturn;
  * @param err The error that has been caught
  * @param TError The return type
  */
-type ErrorFunction<TError> = (err: Error) => TError;
+type ErrorFunction<TError> = (err: Error) => TError
 
 /**
  * Error type for the try-catch function
@@ -19,7 +19,7 @@ type ErrorFunction<TError> = (err: Error) => TError;
  *
  * @param TError The type to be returned
  */
-type ErrorType<TError> = ErrorFunction<TError> | TError;
+type ErrorType<TError> = ErrorFunction<TError> | TError
 
 /**
  * Function type provider for globalize.ts
@@ -27,7 +27,7 @@ type ErrorType<TError> = ErrorFunction<TError> | TError;
 export type TryCatchFunctionType = <TReturn, TError>(
   fn: FunctionType<TReturn>,
   err: ErrorType<TError>,
-) => TReturn | TError;
+) => TReturn | TError
 
 /**
  * Functional try-catch expression that gets handed a function it tries to execute.
@@ -41,12 +41,12 @@ export const $tryCatch = <TReturn, TError>(
   err: ErrorType<TError>,
 ) => {
   try {
-    return fn();
+    return fn()
   } catch (e) {
     if (typeof err === 'function') {
-      return (err as ErrorFunction<TError>)(e as Error);
+      return (err as ErrorFunction<TError>)(e as Error)
     }
 
-    return err;
+    return err
   }
-};
+}
