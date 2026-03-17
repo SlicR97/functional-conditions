@@ -11,8 +11,7 @@ type IfFunction<Type> = () => Type
  * Function type provider for globalize.ts
  */
 export type IfFunctionType = <TThen, TElse>(
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  condition: any,
+  condition: boolean | (() => boolean),
   thenCase: IfFunction<TThen> | TThen,
   elseCase: IfFunction<TElse> | TElse,
 ) => TThen | TElse
@@ -26,12 +25,18 @@ export type IfFunctionType = <TThen, TElse>(
  * @returns Either thenCase or elseCase, or the result of their operations, respectively
  */
 export const $if = <TThen, TElse>(
-  /* eslint-disable @typescript-eslint/no-explicit-any */
-  condition: any,
+  condition: boolean | (() => boolean),
   thenCase: IfFunction<TThen> | TThen,
   elseCase: IfFunction<TElse> | TElse,
 ): TThen | TElse => {
-  const $return = condition ? thenCase : elseCase
+  let evaluated: boolean
+  if (typeof condition === 'function') {
+    evaluated = condition()
+  } else {
+    evaluated = condition
+  }
+
+  const $return = evaluated ? thenCase : elseCase
 
   if (typeof $return === 'function') {
     return ($return as IfFunction<TThen | TElse>)()

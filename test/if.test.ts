@@ -43,26 +43,6 @@ describe('if.ts', () => {
       expect(actual).to.equal(6)
     })
 
-    it('accepts any value that can be truthy or falsy as its condition', () => {
-      const actual = $if(
-        'a',
-        () => 'x',
-        () => 'y',
-      )
-
-      expect(actual).to.equal('x')
-    })
-
-    it('returns false when given a falsy value', () => {
-      const actual = $if(
-        '',
-        () => 'x',
-        () => 'y',
-      )
-
-      expect(actual).to.equal('y')
-    })
-
     it('accepts constant values as its then and else cases', () => {
       const actual = $if(true, 1, 2)
 
